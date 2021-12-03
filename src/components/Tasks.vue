@@ -1,7 +1,9 @@
 <template>
+  <div class="container">
   <div :key="task.id" v-for="task in tasks" style="border: 1px solid black">
     <Task :task="task"/>
   </div> 
+</div>
 </template>
 
 
