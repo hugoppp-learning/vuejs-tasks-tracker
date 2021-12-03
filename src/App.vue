@@ -1,15 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <Tasks :tasks="tasks"/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Tasks from './components/Tasks.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Tasks 
+  },
+  data() {
+    return {
+     tasks: [ ] 
+    }
+  },
+  created(){
+    this.tasks = [
+      {id: 0, text: "tasks0", description: "a description" },
+      {id: 1, text: "tasks1", description: "a description" },
+      {id: 2, text: "tasks2", description: "a description" },
+    ]
   }
 }
 </script>
