@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <NewTaskForm @taskCreated="createTask"/>
     <Header text="Tack tracker"/>
     <Tasks @delete-task="deleteTask" :tasks="tasks"/>
   </div>
@@ -8,12 +9,15 @@
 <script>
 import Tasks from './components/Tasks.vue'
 import Header from './components/Header.vue'
+import NewTaskForm from './components/NewTaskForm.vue'
+import { v4 as uuidv4 } from 'uuid'
 
 export default {
   name: 'App',
   components: {
     Tasks,
-    Header
+    Header,
+    NewTaskForm
   },
   data() {
     return {
@@ -36,6 +40,10 @@ export default {
     deleteTask(id){
       console.log('deleteing Task with id ' + id)
       this.tasks = this.tasks.filter((x) => x.id !== id)
+    },
+    createTask(task){
+      if (task.title)
+        this.tasks.push({id: uuidv4(), title: task.title, description: task.description});
     }
   },
 }

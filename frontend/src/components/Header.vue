@@ -12,7 +12,7 @@ export default {
     text: {
       type: String,
       default: 'no text for this header'
-      }
+    }
   }
 }
 
