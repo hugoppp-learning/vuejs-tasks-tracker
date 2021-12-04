@@ -37,13 +37,36 @@ export default {
       let req = await fetch('https://localhost:7276/TaskItem/All')
       return await req.json()
     },
-    deleteTask(id){
-      console.log('deleteing Task with id ' + id)
-      this.tasks = this.tasks.filter((x) => x.id !== id)
+    async deleteTask(id){
+
+      let deleteMethod = {
+        method: 'DELETE',
+      }
+
+      fetch('https://localhost:7276/TaskItem/' + id , deleteMethod).then(r =>
+      {
+        if (r.ok)
+          this.tasks = this.tasks.filter((x) => x.id !== id)
+      });
     },
-    createTask(task){
-      if (task.title)
-        this.tasks.push({id: uuidv4(), title: task.title, description: task.description});
+
+    async createTask(task){
+      if (!task.title)
+        return;
+
+      let id = uuidv4();
+      task = {id: id, title: task.title, description: task.description};
+      console.log(id);
+      let putMethod = {
+        method: 'PUT',
+        headers: {'content-type' : 'application/json; charset=UTF-8'},
+        body: JSON.stringify(task),
+      }
+      fetch('https://localhost:7276/TaskItem/', putMethod).then(r =>
+      {
+        if (r.ok)
+          this.tasks.push(task);
+      });
     }
   },
 }

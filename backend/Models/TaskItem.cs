@@ -1,5 +1,5 @@
 namespace backend.Models;
-public class TaskItem
+public record TaskItem
 {
     public string Description { get; set; }
 
