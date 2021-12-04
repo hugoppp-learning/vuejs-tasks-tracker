@@ -1,7 +1,7 @@
 <template>
   <div class="task">
     <h3>
-      {{task.text}}
+      {{task.title}}
       <font-awesome-icon class="icon-times" icon="times" 
         @click="$emit('delete-task',task.id)"
       />

@@ -20,14 +20,19 @@ export default {
      tasks: [ ] 
     }
   },
-  created(){
-    this.tasks = [
-      {id: 0, text: "tasks0", description: "a description" },
-      {id: 1, text: "tasks1", description: "a description" },
-      {id: 2, text: "tasks2", description: "a description" },
-    ]
+  async created() {
+    this.tasks = await this.fetchTasks();
+    /* this.tasks = [ */
+    /*   {id: 0, text: "tasks0", description: "a description" }, */
+    /*   {id: 1, text: "tasks1", description: "a description" }, */
+    /*   {id: 2, text: "tasks2", description: "a description" }, */
+    /* ] */
   },
   methods:{
+    async fetchTasks(){
+      let req = await fetch('https://localhost:7276/TaskItem/All')
+      return await req.json()
+    },
     deleteTask(id){
       console.log('deleteing Task with id ' + id)
       this.tasks = this.tasks.filter((x) => x.id !== id)
