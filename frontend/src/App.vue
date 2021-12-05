@@ -34,7 +34,7 @@ export default {
   },
   methods:{
     async fetchTasks(){
-      let req = await fetch('https://localhost:7276/TaskItem/All')
+      let req = await fetch('/api/TaskItem/All')
       return await req.json()
     },
     async deleteTask(id){
@@ -43,7 +43,7 @@ export default {
         method: 'DELETE',
       }
 
-      fetch('https://localhost:7276/TaskItem/' + id , deleteMethod).then(r =>
+      fetch('api/TaskItem/' + id , deleteMethod).then(r =>
       {
         if (r.ok)
           this.tasks = this.tasks.filter((x) => x.id !== id)
@@ -62,7 +62,7 @@ export default {
         headers: {'content-type' : 'application/json; charset=UTF-8'},
         body: JSON.stringify(task),
       }
-      fetch('https://localhost:7276/TaskItem/', putMethod).then(r =>
+      fetch('api/TaskItem/', putMethod).then(r =>
       {
         if (r.ok)
           this.tasks.push(task);
