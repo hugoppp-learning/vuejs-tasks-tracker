@@ -22,8 +22,8 @@ export default {
   header{
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: 20;
+    flex-shrink: 0;
   }
 </style>
 

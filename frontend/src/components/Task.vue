@@ -23,7 +23,7 @@ export default {
 
 .icon-times {
   color: red;
-  font-size: 120%; 
+  font-size: 1.3em;
 }
 
 .task{

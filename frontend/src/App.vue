@@ -1,8 +1,15 @@
 <template>
+
   <div class="container">
-    <NewTaskForm @taskCreated="createTask"/>
-    <Header text="Tack tracker"/>
+  <div class="container-border">
+    <div style="display: flex; justify-content: center;flex-wrap:wrap;">
+      <div style="margin-right:auto">
+        <Header text="Tack tracker" style="margin-right:50px; white-space: nowrap"/>
+      </div>
+      <NewTaskForm @taskCreated="createTask"/>
+    </div>
     <Tasks @delete-task="deleteTask" :tasks="tasks"/>
+  </div>
   </div>
 </template>
 
@@ -26,11 +33,6 @@ export default {
   },
   async created() {
     this.tasks = await this.fetchTasks();
-    /* this.tasks = [ */
-    /*   {id: 0, text: "tasks0", description: "a description" }, */
-    /*   {id: 1, text: "tasks1", description: "a description" }, */
-    /*   {id: 2, text: "tasks2", description: "a description" }, */
-    /* ] */
   },
   methods:{
     async fetchTasks(){
@@ -82,28 +84,44 @@ export default {
 }
 body {
   font-family: 'Poppins', sans-serif;
+  /* background-color: #111111; */
 }
-.container {
-  max-width: 500px;
+
+.container{
+  margin: 5px;
+}
+
+.container-border {
+  display: flex; 
+  flex-direction: column;
+
+  max-width: 1000px;
   margin: 30px auto;
-  overflow: auto;
+  /* overflow: auto; */
   min-height: 300px;
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
 }
-.btn {
+input{
+  padding: 12px 20px;
+  margin: 8px 0;
+  font-size: 1em;
+  box-sizing: border-box;
+
+}
+button {
   display: inline-block;
-  background: #000;
-  color: #fff;
   border: none;
   padding: 10px 20px;
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 1em;
   font-family: inherit;
+  justify-self: start; 
+
 }
 .btn:focus {
   outline: none;
